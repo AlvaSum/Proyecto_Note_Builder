@@ -1,0 +1,55 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../../images/fondo11.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    align-content: center;
+}
+
+.titulo {
+    color: wheat;
+    text-align: center;
+    width: 400px;
+    height: 60px;
+    margin-left: 35%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.categoria {
+    color: wheat;
+    text-align: center;
+    width: 400px;
+    height: 60px;
+    margin-left: 35%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.descripcion {
+    color: wheat;
+    text-align: center;
+    width: 400px;
+    height: 60px;
+    margin-left: 35%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.crear_nota {
+    text-align: center;
+    width: 400px;
+    height: 200px;
+    margin-left: 44%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    background: rgba(0, 0, 0, .5);
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bienvenido {
+    font-family: 'Montserrat', sans-serif;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Viewport" conten="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="crear-usuario.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="loader-overlay" *ngIf="loading">
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="form-content">
+            <h1 id="title"> Registro </h1>
+
+            <form class="mt3" [formGroup]="usuarioForm" (ngSubmit)="crearUsuario()">
+                <div class="input-group">
+                    <!--NOMBRE-->
+                    <div class="text-danger" *ngIf="usuarioForm.get('nombre')?.hasError('required') && usuarioForm.get('nombre')?.touched">
+                        <span>El nombre <strong>es obligatorio</strong></span>
+                    </div>
+                    <div class="input-field" id="nameInput">
+                        <i class="fa-solid fa-user" style="margin-right: 15px;"></i>
+                        <input type="text" placeholder="Nombre" formControlName="nombre">
+                    </div>
+                    <!--APELLIDO-->
+                    <div class="text-danger" *ngIf="usuarioForm.get('apellido')?.hasError('required') && usuarioForm.get('apellido')?.touched">
+                        <span>El apellido <strong>es obligatorio</strong></span>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user" style="margin-right: 15px;"> </i>
+                        <input type="text" placeholder="Apellido" formControlName="apellido">
+                    </div>
+                    <!--CORREO-->
+                    <div class="text-danger" *ngIf="usuarioForm.get('email')?.hasError('required') && usuarioForm.get('email')?.touched">
+                        <span>El email <strong>es obligatorio</strong></span>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope" style="margin-right: 15px;"> </i>
+                        <input type="email" placeholder="Correo" formControlName="email">
+                    </div>
+                    <!--CONTRSEÑA-->
+                    <div class="text-danger" style="margin-top: 5px;" *ngIf="usuarioForm.get('password')?.hasError('required') && usuarioForm.get('password')?.touched">
+                        <span>La contraseña <strong>es obligatoria</strong></span>
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock" style="margin-right: 15px;"> </i>
+                        <input type="password" placeholder="Contraseña" formControlName="password" required="">
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button id="sign" type="btn-field" style="margin-top: 60px;">Registrar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+</html>

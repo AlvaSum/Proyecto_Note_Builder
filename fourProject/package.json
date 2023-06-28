@@ -1,0 +1,21 @@
+{
+  "name": "fourproject",
+  "version": "1.0.0",
+  "description": "four project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emilio",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.29.4",
+    "mongoose": "^7.2.3",
+    "nodemon": "^2.0.22"
+  }
+}

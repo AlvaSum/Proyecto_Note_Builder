@@ -1,0 +1,185 @@
+body {
+    /*Se modificara todo en conjunto de lo que este dentro del body, si pones el titulo por fuera deberas hacer unas llavecitas exclusivas para el titulo jiji*/
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../../images/fondo5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    align-content: center;
+}
+
+
+/*Aqui mande a llamar la clase de container donde te comente que se engloban todas las clases*/
+
+.container {
+    width: 100%;
+    /* Aqui decimos que se modificara el tamaño del container al 100% de la pantalla, osea que si tienes una pantalla del cel se modificara el 
+    100% de esa pantalla*/
+    height: 100vh;
+    /*Este dira que todo lo que este dentro de container se modificara al 100% de la ventana*/
+    display: flex;
+    /*flex hace que se alterne el espacio a la dimension alterada osea que si la haces chiquitita hace que este se alterne a esa*/
+    align-items: center;
+    justify-content: center;
+}
+
+.form-content {
+    width: 100%;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, .7);
+    padding: 100px 60px 100px;
+    text-align: center;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-content h1 {
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: wheat;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-content h1::after {
+    content: '';
+    width: 300px;
+    height: 4px;
+    border-radius: 3px;
+    background: #181c20f6;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    justify-content: center;
+}
+
+.input-field {
+    background-color: #595966;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    transition: max-height 05s;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 18px 15px;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input::placeholder {
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-field i {
+    margin-left: 15px;
+    color: #252532f6;
+    align-items: center;
+    justify-content: center;
+}
+
+form p {
+    color: #ffffff70;
+    text-align: left;
+    font-size: 13px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+form p a {
+    color: #2f213bf6;
+    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-field button {
+    flex-basis: 50%;
+    font-size: 16px;
+    background-color: #0066ff;
+    color: white;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 1s;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-group {
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-field button-disable {
+    background-color: #EAEAEA;
+    color: #2C2F35;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.crear_cuenta button {
+    flex-basis: 30%;
+    font-size: 14px;
+    background-color: #68616df6;
+    color: rgb(255, 255, 255);
+    height: 40px;
+    border-radius: 15px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: background 20s;
+    align-items: left;
+    justify-content: left;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/*Este es el boton que te dije que le daria estilo por separado, es lo mismo que le darias a un boton normal:(*/
+
+.crear_cuenta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: Right;
+    justify-content: Right;
+    font-family: 'Montserrat', sans-serif;
+}

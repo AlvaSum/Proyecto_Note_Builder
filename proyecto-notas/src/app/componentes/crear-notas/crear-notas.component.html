@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="crear-notas.component.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container rounded ">
+        <div class="rowalign-items-stretch">
+
+
+
+
+
+            <div class="col  p-5 rounded-end nueva">
+                <h1 style="color:white;" class="fw-bold text-center pt-5 mb-5 color:withe">Escribe una nueva nota </h1>
+                <!-- CREAR-NOTAS-->
+                <form class="mt3" [formGroup]="notasFrom" (ngSubmit)="crearNota()">
+
+
+                    <!-- titulo-->
+                    <div class="mb-4 titulo">
+
+                        <label style="font-size: 23px" for="titulo" class="form-label text-center">Titulo</label><br>
+                        <input type="titulo" class="form-control" name="titulo">
+                        <div class="text-danger" *ngIf="notasFrom.get('titulo')?.hasError('required')&& notasFrom.get('titulo')?.touched">
+
+                        </div>
+
+                    </div>
+                    <!-- CATEGORIA-->
+                    <div class="mb-4 categoria">
+
+                        <label style="font-size: 23px" for="categoria" class="form-label text-center">Categoria</label><br>
+                        <input type="categoria" class="form-control" name="categoria">
+                        <div class="text-danger" *ngIf="notasFrom.get('categoria')?.hasError('required')&& notasFrom.get('categoria')?.touched">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Descripcion-->
+                    <div class="mb-4 descripcion">
+
+                        <label style="font-size: 23px" for="descripcion" class="form-label text-center">Descripcion</label><br>
+                        <input type="descripcion" class="form-control" name="descripcion">
+                        <div class="text-danger" *ngIf="notasFrom.get('descripcion')?.hasError('required')&& notasFrom.get('descripcion')?.touched">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOTOTN CREAR NOTA  -->
+                    <div class="d-grid crear_nota">
+                        <button style="font-size: 19px;position: absolute;top: 65%;width: 200px; text-align: center;" routerLink="/listar-notas" type="submit" class="btn btn-secondary">Crear Nota </button>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script src="bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

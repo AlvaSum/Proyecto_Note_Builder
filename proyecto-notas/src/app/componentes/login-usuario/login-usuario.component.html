@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Viewport" conten="width=device-width, initial-scale=1.0">
+    <!--este es un plugin el cual nos servira para poder hacer responsive-->
+    <title>Registro</title>
+    <link href="login-usuario.component.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-content">
+            <h1 id="title"> Bienvenido a NoteBuilder </h1>
+
+            <form class="mt3" [formGroup]="usuarioForm" (ngSubmit)="iniciarUsuario()">
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <i style="margin-right: 15px;" class="fa-solid fa-envelope"> </i>
+                        <input type="email" placeholder="Correo" formControlName="email">
+                    </div>
+                    <div class="text-danger" *ngIf="usuarioForm.get('email')?.hasError('required')&& usuarioForm.get('email')?.touched">
+                        <span>Necesario ingresar <strong>email</strong></span>
+                    </div>
+                    <!--CONTRSEÑA-->
+                    <div class="input-field">
+                        <i style="margin-right: 15px;" class="fa-solid fa-lock"> </i>
+                        <input type="password" placeholder="Contraseña" formControlName="password">
+                    </div>
+                    <div class="text-danger" *ngIf="usuarioForm.get('password')?.hasError('required')&& usuarioForm.get('password')?.touched">
+                        <span>Necesario ingresar<strong>contraseña</strong></span>
+                    </div>
+                </div>
+                <div class="btn-field">
+                    <button type="btn-field" type="submit" style="margin-top: 30px;">Ingresar </button>
+
+                </div><br> <br><br><br>
+                <div class="crear_cuenta">
+                    <span style="position: absolute;top: 70%; color:rgb(155, 133, 133); "> ¿No tienes cuenta? <button id="sign" type="btn-field "routerLink="/crear-usuario">Crear Cuenta</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+</html>

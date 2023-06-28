@@ -1,0 +1,196 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+</head>
+
+<body>
+    <!-- Loader -->
+    <div class="loader-overlay" *ngIf="loading">
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" style="text-decoration: none;" routerLink="/listar-notas">Note Builder</a>
+            <div class="justify-content-end" id="navbarNav">
+                <span class="navbar-text mr-3" style="margin-right: 15px;"><strong>¡Bienvenido! {{ usuario }}</strong></span>
+                <button uk-tooltip="Salir" class="btn btn-hover-color" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Switched -->
+
+    <div class="container">
+        <h1 style="text-align: center; color: white;">{{ titulo }}</h1>
+        <ul class="uk-tab-bottom stylebar" uk-tab>
+            <li class="uk-open">
+                <a href="#" (click)="cambiarOpcion('misNotas')" style="color: rgb(250, 250, 250);">Mis Notas</a>
+            </li>
+            <!-- <li [class.uk-active]="opcionSeleccionada === 'grupos'">
+                <a href="#" (click)="cambiarOpcion('grupos')" style="color: rgb(250, 250, 250);">Grupos</a>
+            </li> -->
+        </ul>
+
+        <div class="uk-open">
+            <!-- Contenido para la opción "Mis Notas" -->
+            <div class="container-notes uk-flex uk-flex-around">
+                <button class="uk-button uk-button-primary" (click)="crearNota()" [ngClass]="{'btn-disable': listCategory.length === 0}">Crear nueva nota</button>
+                <button class="uk-button uk-button-primary" (click)="crearCategoria()">Crear nueva categoría</button>
+            </div>
+            <ul uk-accordion>
+                <li *ngFor="let categoria of listCategory">
+                    <a class="uk-accordion-title" (click)="obtenerNotas(categoria._id)" style="color: rgb(250, 250, 250);">{{ categoria.titulo }}</a>
+                    <a uk-tooltip="Editar" (click)="editarCategoria(categoria)" class="card-link"><i class="fa-regular fa-pen-to-square" style="color: #ff0000; margin: 0px 10px;"></i></a>
+                    <a uk-tooltip="Eliminar" (click)="eliminarCategoria(categoria)" class="card-link"><i class="fa-solid fa-trash" style="color: #e12336;"></i></a><br>
+                    <div class="uk-accordion-content">
+                        <div class="row">
+                            <div class="col-md-4" *ngFor="let note of listNotes">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="card-icons">
+                                            <i (click)="editarNota(note)" class="fas fa-edit" style="cursor: pointer;" uk-tooltip="Editar"></i>
+                                            <!-- Icono de edición -->
+                                            <i (click)="eliminarNota(note)" class="fas fa-trash-alt" style="cursor: pointer;" uk-tooltip="Eliminar"></i>
+                                            <!-- Icono de eliminación -->
+                                        </div>
+                                        <h5 class="card-title"><strong>Título:</strong> <br>{{ note.titulo }}</h5>
+                                        <p class="card-text"><strong>Descripción:</strong> <br>{{ note.descripcion }}</p>
+                                        <p class="card-text"><strong>Creada el:</strong> {{ note.fecha }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngIf="listNotes.length===0" style="margin-top: 100px;">
+                            <h5 style="text-align: center;">Esta categoria aún no tiene Notas Registradas</h5>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="alert alert-danger" role="alert" *ngIf="listCategory.length===0" style="margin-top: 100px;">
+                <h5 style="text-align: center; margin-top: 20px;">No hay Categorias que mostrar. Agrega una para comenzar y crear nuevas notas</h5>
+            </div>
+        </div>
+
+        <div *ngIf="opcionSeleccionada === 'grupos'">
+            <!-- Contenido para la opción "Grupos" -->
+            <p>Aquí va el contenido de Grupos.</p>
+        </div>
+    </div>
+
+    <!-- Modal Crear Nota -->
+
+    <div id="my-modal-note" uk-modal>
+        <div class="uk-modal-dialog">
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">Crear nota</h2>
+            </div>
+            <div class="uk-modal-body">
+                <form [formGroup]="noteForm">
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="title">Título de la nota: </label>
+                        <input class="uk-input" type="text" id="title" formControlName="title">
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="description">Descripción de la nota: </label>
+                        <textarea class="uk-textarea" id="description" formControlName="description"></textarea>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="category">Categoría: </label>
+                        <select class="uk-select" id="category" formControlName="category">
+                            <option *ngFor="let categoria of listCategory" [value]="categoria._id">{{ categoria.titulo }}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cerrar</button>
+                <button class="uk-button uk-button-primary" type="button" (click)="saveNote()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Nota -->
+
+    <div id="my-modal-edit-note" uk-modal>
+        <div class="uk-modal-dialog">
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">Editar nota</h2>
+            </div>
+            <div class="uk-modal-body">
+                <form [formGroup]="noteForm">
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="title">Título de la nota: </label>
+                        <input class="uk-input" type="text" id="title" formControlName="title">
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="description">Descripción de la nota: </label>
+                        <textarea class="uk-textarea" id="description" formControlName="description"></textarea>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="category">Categoría: </label>
+                        <select class="uk-select" id="category" formControlName="category">
+                            <option *ngFor="let categoria of listCategory" [value]="categoria._id">{{ categoria.titulo }}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cerrar</button>
+                <button class="uk-button uk-button-primary" type="button" (click)="saveNote()">Editar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Crear Categoria -->
+
+    <div id="my-modal-category" uk-modal>
+        <div class="uk-modal-dialog">
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">Crear categoría</h2>
+            </div>
+            <div class="uk-modal-body">
+                <form [formGroup]="categoryForm">
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="title">Nombre de la Categoría: </label>
+                        <input class="uk-input" type="text" id="title" formControlName="title">
+                    </div>
+                </form>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cerrar</button>
+                <button class="uk-button uk-button-primary" type="button" (click)="saveCategory()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Categoria -->
+
+    <div id="my-modal-edit-category" uk-modal>
+        <div class="uk-modal-dialog">
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">Editar categoría</h2>
+            </div>
+            <div class="uk-modal-body">
+                <form [formGroup]="categoryForm">
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="title">Nombre de la Categoría: </label>
+                        <input class="uk-input" type="text" id="title" formControlName="title">
+                    </div>
+                </form>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cerrar</button>
+                <button class="uk-button uk-button-primary" type="button" (click)="saveCategory()">Editar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
